@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML 基础知识一页通</title>
+  <meta name="description" content="一份可离线保存的 HTML 基础知识速查与练习页面，涵盖常用标签、语义化、表单、表格、布局、CSS/JS 基础与最佳实践。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%93%9D%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg: #0b1020; /* 深色背景，便于长时间阅读 */
+      --panel:#121a33;
+      --muted:#8aa0ff;
+      --text:#eef2ff;
+      --sub:#b8c1ff;
+      --accent:#79ffe1;
+      --code-bg:#0d1326;
+      --border: #223066;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans SC", "PingFang SC", sans-serif;color:var(--text);background:linear-gradient(180deg,#0a0e1c 0%, #0e1430 100%);}    
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(11,16,32,0.7);backdrop-filter:saturate(120%) blur(8px);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1100px;margin:auto;padding:28px}
+    .title{display:flex;gap:16px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:12px;background:conic-gradient(from 210deg, #79ffe1, #8aa0ff, #79ffe1);display:grid;place-items:center;color:#0b1020;font-weight:900}
+    h1{margin:0;font-size:clamp(20px,3.2vw,32px)}
+    .sub{color:var(--sub);margin:2px 0 0}
+    main{display:grid;grid-template-columns:280px 1fr;gap:24px}
+    nav{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding-right:8px}
+    nav .card{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
+    nav details{margin:8px 0}
+    nav summary{cursor:pointer;color:var(--muted)}
+    nav ol{margin:8px 0 0 18px;padding:0}
+    nav li{margin:6px 0}
+
+    section{border:1px solid var(--border);background:var(--panel);border-radius:16px;padding:20px;margin:10px 0}
+    h2{font-size:22px;margin:0 0 10px}
+    h3{font-size:18px;margin:16px 0 6px;color:var(--muted)}
+    .tip{border-left:3px solid var(--accent);padding:10px 12px;background:rgba(121,255,225,0.06);border-radius:8px}
+
+    pre{background:var(--code-bg);border:1px solid var(--border);border-radius:12px;padding:12px;overflow:auto}
+    code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .pill{display:inline-block;border:1px solid var(--border);padding:2px 8px;border-radius:999px;margin:2px 4px;color:var(--sub)}
+
+    table{width:100%;border-collapse:collapse}
+    th, td{border:1px solid var(--border);padding:8px;text-align:left}
+    th{background:#0f1a3b}
+
+    footer{opacity:.8;padding:40px 0}
+    .small{font-size:13px;color:var(--sub)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#121a33,#0f1830);cursor:pointer}
+    .btn:hover{filter:brightness(1.1)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <div class="logo">HTML</div>
+      <div>
+        <h1>HTML 基础知识一页通（含练习区）</h1>
+        <p class="sub">从零到入门：结构、常用标签、布局、表单、表格、语义化、CSS/JS 基础与最佳实践。</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <main>
+      <nav>
+        <div class="card">
+          <details open>
+            <summary>目录</summary>
+            <ol>
+              <li><a href="#quickstart">HTML 基础结构</a></li>
+              <li><a href="#tags">常用标签</a></li>
+              <li><a href="#semantics">语义化标签</a></li>
+              <li><a href="#forms">表单基础</a></li>
+              <li><a href="#tables">表格基础</a></li>
+              <li><a href="#layout">布局与盒模型</a></li>
+              <li><a href="#css">CSS 基础</a></li>
+              <li><a href="#js">JavaScript 基础</a></li>
+              <li><a href="#accessibility">可访问性与元信息</a></li>
+              <li><a href="#checklist">最佳实践清单</a></li>
+              <li><a href="#playground">在线练习区</a></li>
+              <li><a href="#template">项目模板</a></li>
+            </ol>
+          </details>
+        </div>
+      </nav>
+
+      <div>
+        <section id="quickstart">
+          <h2>1. HTML 基础结构</h2>
+          <p>HTML（HyperText Markup Language）是用 <em>标签</em> 描述网页结构的标记语言。一个最小可工作的 HTML 文档如下：</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="zh-CN"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;页面标题&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    你好，世界！
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          <div class="tip small">提示：<code>&lt;head&gt;</code> 放元数据（编码、标题、样式、脚本等），<code>&lt;body&gt;</code> 放页面可见内容。</div>
+        </section>
+
+        <section id="tags">
+          <h2>2. 常用标签</h2>
+          <div class="grid">
+            <div>
+              <h3>文本与标题</h3>
+              <p><span class="pill">&lt;h1&gt;~&lt;h6&gt;</span> <span class="pill">&lt;p&gt;</span> <span class="pill">&lt;span&gt;</span> <span class="pill">&lt;strong&gt;</span> <span class="pill">&lt;em&gt;</span></p>
+<pre><code>&lt;h1&gt;主标题&lt;/h1&gt;
+&lt;p&gt;一段文字，包含 &lt;strong&gt;强调&lt;/strong&gt; 和 &lt;em&gt;倾斜&lt;/em&gt;。&lt;/p&gt;
+</code></pre>
+            </div>
+            <div>
+              <h3>链接与图片</h3>
+              <p><span class="pill">&lt;a&gt;</span> <span class="pill">href</span> <span class="pill">target</span> <span class="pill">&lt;img&gt;</span> <span class="pill">alt</span></p>
+<pre><code>&lt;a href="https://example.com" target="_blank"&gt;访问站点&lt;/a&gt;
+&lt;img src="cat.png" alt="一只可爱的猫"&gt;
+</code></pre>
+            </div>
+            <div>
+              <h3>列表</h3>
+              <p><span class="pill">&lt;ul&gt;</span> <span class="pill">&lt;ol&gt;</span> <span class="pill">&lt;li&gt;</span></p>
+<pre><code>&lt;ol&gt;
+  &lt;li&gt;第一步&lt;/li&gt;
+  &lt;li&gt;第二步&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+            </div>
+            <div>
+              <h3>分区与容器</h3>
+              <p><span class="pill">&lt;div&gt;</span> <span class="pill">&lt;section&gt;</span> <span class="pill">&lt;article&gt;</span></p>
+<pre><code>&lt;section&gt;
+  &lt;h2&gt;版块标题&lt;/h2&gt;
+  &lt;p&gt;内容...&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="semantics">
+          <h2>3. 语义化标签</h2>
+          <p>语义化让结构更清晰、利于 SEO 与辅助技术。常见语义元素：</p>
+          <p>
+            <span class="pill">&lt;header&gt;</span>
+            <span class="pill">&lt;nav&gt;</span>
+            <span class="pill">&lt;main&gt;</span>
+            <span class="pill">&lt;section&gt;</span>
+            <span class="pill">&lt;article&gt;</span>
+            <span class="pill">&lt;aside&gt;</span>
+            <span class="pill">&lt;footer&gt;</span>
+            <span class="pill">&lt;figure&gt;</span>
+            <span class="pill">&lt;figcaption&gt;</span>
+          </p>
+<pre><code>&lt;article&gt;
+  &lt;header&gt;新闻标题&lt;/header&gt;
+  &lt;p&gt;正文...&lt;/p&gt;
+  &lt;footer&gt;作者与时间&lt;/footer&gt;
+&lt;/article&gt;
+</code></pre>
+        </section>
+
+        <section id="forms">
+          <h2>4. 表单基础</h2>
+          <p>表单用于收集用户输入。常用控件：</p>
+          <p>
+            <span class="pill">&lt;input type="text|email|password|number|date"&gt;</span>
+            <span class="pill">&lt;textarea&gt;</span>
+            <span class="pill">&lt;select&gt;</span>
+            <span class="pill">&lt;label for&gt;</span>
+            <span class="pill">required</span>
+            <span class="pill">placeholder</span>
+          </p>
+<pre><code>&lt;form action="/submit" method="post"&gt;
+  &lt;label for="email"&gt;邮箱&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required placeholder="you@example.com"&gt;
+
+  &lt;label for="role"&gt;角色&lt;/label&gt;
+  &lt;select id="role" name="role"&gt;
+    &lt;option&gt;学生&lt;/option&gt;
+    &lt;option&gt;工程师&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+          <div class="tip small">可用性：为每个控件配对 <code>&lt;label&gt;</code>，为图片提供 <code>alt</code>，给表单元素添加 <code>name</code>。</div>
+        </section>
+
+        <section id="tables">
+          <h2>5. 表格基础</h2>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;成绩表&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;分数&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;小明&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;小红&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+          <div class="tip small">使用 <code>&lt;thead&gt;</code> / <code>&lt;tbody&gt;</code> / <code>&lt;tfoot&gt;</code> 提高结构清晰度；用 <code>scope</code> 标明表头关联。</div>
+        </section>
+
+        <section id="layout">
+          <h2>6. 布局与盒模型</h2>
+          <h3>盒模型</h3>
+          <p>每个元素都是一个盒子：<strong>内容 content</strong> + <strong>内边距 padding</strong> + <strong>边框 border</strong> + <strong>外边距 margin</strong>。</p>
+<pre><code>/* 让宽高更直观 */
+*{ box-sizing: border-box; }
+</code></pre>
+          <h3>块级 vs 内联</h3>
+          <ul>
+            <li>块级（如 <code>div</code>、<code>section</code>）独占一行，可设宽高。</li>
+            <li>内联（如 <code>span</code>、<code>a</code>）不独占一行，不可直接设置宽高。</li>
+          </ul>
+          <h3>Flex 快速布局</h3>
+<pre><code>.row { display:flex; gap:12px; }
+.row .item { flex:1; }
+</code></pre>
+          <h3>Grid 网格布局</h3>
+<pre><code>.grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+</code></pre>
+        </section>
+
+        <section id="css">
+          <h2>7. CSS 基础</h2>
+          <h3>引入方式</h3>
+<pre><code>&lt;!-- 行内 --&gt;
+&lt;h1 style="color:tomato"&gt;标题&lt;/h1&gt;
+
+&lt;!-- 内嵌 --&gt;
+&lt;style&gt; h1 { color: tomato; } &lt;/style&gt;
+
+&lt;!-- 外链 --&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;
+</code></pre>
+          <h3>选择器与优先级（从低到高）</h3>
+          <ul>
+            <li>类型选择器（<code>div</code>、<code>p</code>）</li>
+            <li>类选择器（<code>.btn</code>）</li>
+            <li>ID 选择器（<code>#app</code>）</li>
+            <li>行内样式（<code>style="..."</code>）</li>
+            <li><code>!important</code>（慎用）</li>
+          </ul>
+          <h3>常用属性</h3>
+          <p><span class="pill">color</span> <span class="pill">background</span> <span class="pill">padding</span> <span class="pill">margin</span> <span class="pill">border</span> <span class="pill">display</span> <span class="pill">position</span> <span class="pill">flex/grid</span></p>
+        </section>
+
+        <section id="js">
+          <h2>8. JavaScript 基础</h2>
+          <h3>引入方式</h3>
+<pre><code>&lt;script&gt;console.log('内联脚本')&lt;/script&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+</code></pre>
+          <h3>简单交互示例</h3>
+<pre><code>&lt;button id="hi"&gt;点我试试&lt;/button&gt;
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () =&gt; {
+    const btn = document.getElementById('hi');
+    btn.addEventListener('click', () =&gt; {
+      alert('你好，HTML！');
+    });
+  });
+&lt;/script&gt;
+</code></pre>
+        </section>
+
+        <section id="accessibility">
+          <h2>9. 可访问性与元信息</h2>
+          <ul>
+            <li>为图片提供 <code>alt</code> 文本；为表单控件配对 <code>&lt;label for&gt;</code>。</li>
+            <li>为页面设置 <code>lang</code>（本页已设置 <code>zh-CN</code>）。</li>
+            <li>链接文本应描述目标，而非“点此”。</li>
+            <li>合理使用语义标签，有助于屏幕阅读器理解结构。</li>
+            <li>在 <code>&lt;head&gt;</code> 中添加 <code>&lt;meta name="description"&gt;</code>、favicon 等。</li>
+          </ul>
+        </section>
+
+        <section id="checklist">
+          <h2>10. 最佳实践清单</h2>
+          <ul>
+            <li>始终声明 <code>&lt;!doctype html&gt;</code> 与正确编码 <code>UTF-8</code>。</li>
+            <li>移动端适配：<code>meta viewport</code>。</li>
+            <li>结构语义化，保持标题层级有序（仅一个 <code>h1</code>）。</li>
+            <li>样式与脚本尽量外链，启用压缩与缓存。</li>
+            <li>图片优化：合理尺寸、<code>alt</code> 文本、可使用 <code>loading="lazy"</code>。</li>
+            <li>保证可访问性：对比度、键盘可达性、表单标签。</li>
+            <li>调试工具：使用浏览器 DevTools 检查结构与样式。</li>
+          </ul>
+        </section>
+
+        <section id="playground">
+          <h2>11. 在线练习区（可实时预览）</h2>
+          <p class="small">在下方编辑 HTML 代码，点击“运行”在右侧看到结果（本地运行，安全沙箱）。</p>
+          <div class="grid" style="grid-template-columns:1fr 1fr">
+            <div>
+              <textarea id="code" style="width:100%;height:260px;border:1px solid var(--border);background:var(--code-bg);color:var(--text);border-radius:12px;padding:10px">&lt;h1&gt;Hello HTML&lt;/h1&gt;
+&lt;p&gt;欢迎学习 HTML！&lt;/p&gt;
+&lt;style&gt;body{font-family:system-ui;padding:16px}&lt;/style&gt;</textarea>
+              <div style="margin-top:10px;display:flex;gap:10px">
+                <button class="btn" id="run">运行 ▶</button>
+                <button class="btn" id="reset">重置 ⟲</button>
+              </div>
+            </div>
+            <iframe id="preview" title="预览" style="width:100%;height:320px;border:1px solid var(--border);border-radius:12px;background:white"></iframe>
+          </div>
+        </section>
+
+        <section id="template">
+          <h2>12. 项目起步模板</h2>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;我的网页&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main&gt;...&lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        </section>
+
+        <footer class="small">© 2025 HTML 基础速查。你可以直接将本页面“另存为 .html”离线使用。</footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 练习区：运行与重置
+    const code = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const runBtn = document.getElementById('run');
+    const resetBtn = document.getElementById('reset');
+
+    const initial = code.value;
+    const run = () => {
+      const html = code.value;
+      const doc = preview.contentDocument || preview.contentWindow.document;
+      doc.open();
+      doc.write(html);
+      doc.close();
+    };
+    runBtn.addEventListener('click', run);
+    resetBtn.addEventListener('click', () => { code.value = initial; run(); });
+    // 首次加载自动运行
+    window.addEventListener('DOMContentLoaded', run);
+  </script>
+</body>
+</html>
