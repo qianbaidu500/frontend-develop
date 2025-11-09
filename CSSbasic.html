@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS 基础知识一页通</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,PingFang SC,sans-serif;line-height:1.6;background:#f6f7fb;color:#1a1a1a;padding:40px;} 
+    h1,h2,h3{margin-top:24px;margin-bottom:10px;} 
+    pre{background:#1e1e1e;color:#fff;padding:14px;border-radius:8px;overflow:auto;} 
+    code{font-family:ui-monospace,Consolas,monospace;} 
+    .card{background:#fff;border:1px solid #e3e6ef;padding:20px;border-radius:14px;margin-bottom:20px;} 
+    .pill{display:inline-block;padding:3px 10px;border-radius:999px;background:#eef1ff;margin:2px 4px;color:#4a57c8;font-size:14px;} 
+  </style>
+</head>
+<body>
+  <h1>CSS 基础知识一页通</h1>
+  <p>本页面覆盖选择器、盒模型、布局、文本样式、颜色、单位、层叠与优先级，并附带练习区。</p>
+
+  <div class="card">
+    <h2>1. CSS 的三种引入方式</h2>
+<pre><code>/* 行内样式 */
+&lt;h1 style="color:red"&gt;标题&lt;/h1&gt;
+
+/* 内嵌样式 */
+&lt;style&gt;
+  h1 { color: red; }
+&lt;/style&gt;
+
+/* 外部样式 */
+&lt;link rel="stylesheet" href="style.css"&gt;
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>2. 常用选择器</h2>
+    <p>
+      <span class="pill">元素选择器</span>
+      <span class="pill">类 .class</span>
+      <span class="pill">ID #id</span>
+      <span class="pill">子代 A &gt; B</span>
+      <span class="pill">后代 A B</span>
+      <span class="pill">伪类 :hover</span>
+      <span class="pill">伪元素 ::after</span>
+    </p>
+<pre><code>p { color: #333; }
+.button { padding: 8px 12px; }
+#header { background: #fafafa; }
+ul li { margin-bottom: 8px; }
+button:hover { background: #ddd; }
+p::first-line { font-weight: bold; }
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3. 盒模型 Box Model</h2>
+    <p>元素由 <strong>content → padding → border → margin</strong> 组成。</p>
+<pre><code>.box {
+  width: 200px;
+  padding: 16px;
+  border: 2px solid #333;
+  margin: 20px;
+}
+</code></pre>
+    <p>推荐使用：</p>
+<pre><code>* { box-sizing: border-box; }
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>4. 常用属性分类</h2>
+    <h3>尺寸与边距</h3>
+<pre><code>width: 100px;
+height: 50px;
+padding: 10px 20px;
+margin: 20px auto;
+</code></pre>
+
+    <h3>边框与圆角</h3>
+<pre><code>border: 1px solid #444;
+border-radius: 8px;
+</code></pre>
+
+    <h3>背景</h3>
+<pre><code>background-color: #f0f0f0;
+background-image: url(bg.png);
+background-size: cover;
+</code></pre>
+
+    <h3>文本样式</h3>
+<pre><code>font-size: 16px;
+font-weight: 600;
+text-align: center;
+line-height: 1.8;
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>5. 布局：Flex 与 Grid</h2>
+    <h3>Flex 适合一维布局</h3>
+<pre><code>.row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+</code></pre>
+
+    <h3>Grid 适合二维布局</h3>
+<pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. 层叠与优先级（从低到高）</h2>
+    <ul>
+      <li>元素选择器（p, div）</li>
+      <li>类选择器（.box）</li>
+      <li>ID 选择器（#main）</li>
+      <li>行内样式（style=""）</li>
+      <li>!important（最高，不推荐随便使用）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. 颜色与单位</h2>
+    <h3>颜色</h3>
+<pre><code>color: #333;
+color: rgb(255, 0, 0);
+color: hsl(210, 50%, 50%);
+</code></pre>
+
+    <h3>单位</h3>
+<pre><code>px（像素）
+rem（相对根元素字体）
+em（相对当前元素字体）
+%（相对父元素）
+vw/vh（相对视口尺寸）
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>8. 简易练习区</h2>
+    <p>修改左侧 CSS，在右侧实时预览：</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <textarea id="css" style="width:100%;height:220px;border:1px solid #ccc;border-radius:8px;padding:10px;font-family:monospace;">.box {
+  width: 120px;
+  height: 120px;
+  background: #4a57c8;
+  border-radius: 12px;
+}
+</textarea>
+        <button id="run" style="margin-top:10px;padding:8px 12px;border:1px solid #ccc;border-radius:8px;cursor:pointer;">运行 ▶</button>
+      </div>
+      <iframe id="preview" style="width:100%;height:260px;border:1px solid #ccc;border-radius:8px;background:white;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const cssInput = document.getElementById('css');
+    const preview = document.getElementById('preview');
+    const runBtn = document.getElementById('run');
+
+    function runCSS() {
+      const doc = preview.contentDocument;
+      doc.open();
+      doc.write(`<style>${cssInput.value}</style><div class="box"></div>`);
+      doc.close();
+    }
+
+    runBtn.addEventListener('click', runCSS);
+    window.addEventListener('DOMContentLoaded', runCSS);
+  </script>
+</body>
+</html>
