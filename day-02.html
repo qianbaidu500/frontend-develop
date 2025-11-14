@@ -1,281 +1,59 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flex导航栏示例</title>
-  <!-- 引入Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- 引入Font Awesome -->
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  
-  <!-- 配置Tailwind自定义主题 -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#165DFF',
-            secondary: '#36CFC9',
-            dark: '#1D2129',
-            light: '#F2F3F5'
-          },
-          fontFamily: {
-            inter: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flex + Navbar Demo</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
     }
-  </script>
-  
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-      .nav-shadow {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      }
-      .nav-item-hover {
-        @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
-      }
+
+    /* 导航栏外层 */
+    .navbar {
+        display: flex;               /* 横向排列 */
+        background-color: #333;      /* 深色背景 */
+        padding: 10px;
     }
-  </style>
+
+    /* 导航项 */
+    .navbar a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        flex: 1;                     /* 每个导航项宽度平均分 */
+        text-align: center;
+    }
+
+    /* 鼠标悬停效果 */
+    .navbar a:hover {
+        background-color: #555;
+    }
+
+    /* 主体内容 */
+    .content {
+        padding: 20px;
+        display: flex;
+        justify-content: center;     /* 水平居中 */
+        align-items: center;         /* 垂直居中 */
+        height: 200px;
+    }
+</style>
 </head>
+<body>
 
-<body class="font-inter bg-gray-50 text-dark">
-  <!-- 导航栏 -->
-  <header id="navbar" class="fixed w-full top-0 left-0 z-50 transition-all duration-300 bg-white nav-shadow">
-    <div class="container mx-auto px-4">
-      <nav class="flex items-center justify-between h-16 md:h-20">
-        <!-- Logo -->
-        <div class="flex items-center">
-          <a href="#" class="flex items-center space-x-2">
-            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <i class="fa fa-cube text-white text-xl"></i>
-            </div>
-            <span class="text-xl font-bold text-primary">FlexNav</span>
-          </a>
-        </div>
-        
-        <!-- 桌面端导航链接 -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="#" class="nav-item-hover font-medium text-primary py-2">首页</a>
-          <a href="#features" class="nav-item-hover font-medium text-gray-600 hover:text-primary py-2 transition-colors">功能</a>
-          <a href="#services" class="nav-item-hover font-medium text-gray-600 hover:text-primary py-2 transition-colors">服务</a>
-          <a href="#about" class="nav-item-hover font-medium text-gray-600 hover:text-primary py-2 transition-colors">关于我们</a>
-          <a href="#contact" class="nav-item-hover font-medium text-gray-600 hover:text-primary py-2 transition-colors">联系我们</a>
-        </div>
-        
-        <!-- 登录/注册按钮 - 桌面端 -->
-        <div class="hidden md:flex items-center space-x-4">
-          <a href="#" class="px-4 py-2 text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors">登录</a>
-          <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">注册</a>
-        </div>
-        
-        <!-- 移动端菜单按钮 -->
-        <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
-          <i class="fa fa-bars text-2xl"></i>
-        </button>
-      </nav>
-    </div>
-    
-    <!-- 移动端导航菜单 -->
-    <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-      <div class="container mx-auto px-4 py-3 space-y-3">
-        <a href="#" class="block py-2 text-primary font-medium">首页</a>
-        <a href="#features" class="block py-2 text-gray-600 hover:text-primary transition-colors">功能</a>
-        <a href="#services" class="block py-2 text-gray-600 hover:text-primary transition-colors">服务</a>
-        <a href="#about" class="block py-2 text-gray-600 hover:text-primary transition-colors">关于我们</a>
-        <a href="#contact" class="block py-2 text-gray-600 hover:text-primary transition-colors">联系我们</a>
-        <div class="flex flex-col space-y-3 pt-3 border-t">
-          <a href="#" class="px-4 py-2 text-center text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors">登录</a>
-          <a href="#" class="px-4 py-2 text-center bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">注册</a>
-        </div>
-      </div>
-    </div>
-  </header>
+<!-- 顶部导航栏 -->
+<div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</div>
 
-  <!-- 主内容区域 -->
-  <main class="pt-16 md:pt-20">
-    <!-- 英雄区域 -->
-    <section class="bg-gradient-to-br from-primary/5 to-secondary/5 py-16 md:py-24">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/2 mb-10 md:mb-0">
-            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight mb-4">
-              灵活布局<br>
-              <span class="text-primary">响应式导航</span>
-            </h1>
-            <p class="text-gray-600 text-lg mb-8 max-w-lg">
-              使用Flexbox构建的现代导航栏，完美适配各种设备屏幕，提供流畅的用户体验和优雅的视觉效果。
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <a href="#" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all transform hover:-translate-y-1 shadow-lg shadow-primary/20 text-center">
-                立即体验
-              </a>
-              <a href="#" class="px-6 py-3 border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-all text-center">
-                了解更多 <i class="fa fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-          </div>
-          <div class="md:w-1/2 flex justify-center">
-            <img src="https://picsum.photos/id/180/600/400" alt="Flex布局展示" class="rounded-xl shadow-2xl max-w-full h-auto transform hover:scale-[1.02] transition-transform duration-300">
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 功能区域 -->
-    <section id="features" class="py-16 md:py-24">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">强大的Flex布局功能</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">探索我们使用Flexbox构建的导航栏所具备的核心功能，为您的网站提供卓越的导航体验。</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- 功能卡片1 -->
-          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-              <i class="fa fa-mobile text-2xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3">响应式设计</h3>
-            <p class="text-gray-600">自动适配从手机到桌面的各种设备屏幕，提供一致的用户体验。</p>
-          </div>
-          
-          <!-- 功能卡片2 -->
-          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-              <i class="fa fa-bolt text-2xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3">性能优化</h3>
-            <p class="text-gray-600">轻量级实现，不影响页面加载速度，确保导航操作流畅无阻。</p>
-          </div>
-          
-          <!-- 功能卡片3 -->
-          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-              <i class="fa fa-paint-brush text-2xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3">自定义样式</h3>
-            <p class="text-gray-600">轻松调整颜色、尺寸和动画效果，匹配您的品牌风格和设计需求。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 其他区域占位 -->
-    <section id="services" class="py-16 md:py-24 bg-light">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">我们的服务</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">提供专业的前端开发服务，专注于创建优雅且功能强大的用户界面。</p>
-      </div>
-    </section>
-    
-    <section id="about" class="py-16 md:py-24">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">关于我们</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">我们是一支专注于前端技术的团队，致力于打造卓越的用户体验。</p>
-      </div>
-    </section>
-    
-    <section id="contact" class="py-16 md:py-24 bg-light">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">联系我们</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">有任何问题或需求，请随时与我们联系，我们将尽快回复您。</p>
-      </div>
-    </section>
-  </main>
+<!-- 主体内容 -->
+<div class="content">
+    <h2>欢迎来到 Flex 布局示例</h2>
+</div>
 
-  <!-- 页脚 -->
-  <footer class="bg-dark text-white py-12">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-6 md:mb-0">
-          <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-              <i class="fa fa-cube text-primary text-lg"></i>
-            </div>
-            <span class="text-lg font-bold">FlexNav</span>
-          </div>
-          <p class="text-gray-400 mt-2">现代Flex布局导航解决方案</p>
-        </div>
-        
-        <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fa fa-twitter"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fa fa-instagram"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 FlexNav. 保留所有权利。</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // 移动端菜单切换
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      // 切换图标
-      const icon = menuToggle.querySelector('i');
-      if (icon.classList.contains('fa-bars')) {
-        icon.classList.replace('fa-bars', 'fa-times');
-      } else {
-        icon.classList.replace('fa-times', 'fa-bars');
-      }
-    });
-    
-    // 滚动时导航栏样式变化
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 10) {
-        navbar.classList.add('bg-white/95', 'backdrop-blur-sm');
-        navbar.classList.remove('bg-white');
-      } else {
-        navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
-        navbar.classList.add('bg-white');
-      }
-    });
-    
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // 关闭移动菜单（如果打开）
-        if (!mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-          const icon = menuToggle.querySelector('i');
-          icon.classList.replace('fa-times', 'fa-bars');
-        }
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80, // 考虑导航栏高度
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>

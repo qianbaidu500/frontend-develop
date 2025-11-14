@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Poster with New Background</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+    }
+
+    /* 海报容器 */
+    .poster {
+        position: relative;
+        width: 100%;
+        height: 450px;
+
+        /* 新背景：渐变 + 图片叠加 */
+        background: 
+            linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.1)),
+            url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80");
+
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+
+    /* 标题（绝对定位） */
+    .title {
+        position: absolute;
+        top: 80px;
+        left: 50px;
+        font-size: 42px;
+        font-weight: bold;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    /* 副标题 */
+    .subtitle {
+        position: absolute;
+        top: 150px;
+        left: 50px;
+        font-size: 20px;
+        max-width: 400px;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* 按钮 */
+    .btn {
+        position: absolute;
+        top: 250px;
+        left: 50px;
+        padding: 12px 24px;
+        font-size: 18px;
+        background-color: #ff7f50;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: .2s;
+    }
+
+    .btn:hover {
+        background-color: #ff4f20;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="poster">
+    <div class="title">年度科技展览大会</div>
+    <div class="subtitle">探索未来科技趋势，体验前沿创新产品。欢迎加入我们的年度盛会！</div>
+    <a href="#" class="btn">立即报名</a>
+</div>
+
+</body>
+</html>
